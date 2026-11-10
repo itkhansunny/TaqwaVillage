@@ -1431,3 +1431,148 @@ html[lang=en] .page-hero h1 { font-family: 'Plus Jakarta Sans', sans-serif; font
 .footer-legal-links span {
   color: rgba(255, 255, 255, 0.15);
 }
+
+
+/* =========================================================
+   EXACT WIREFRAME DESIGN DETAILS (MATCHING PAPER SKETCH)
+   ========================================================= */
+
+.sketch-corner-offer {
+  position: absolute;
+  top: 14px;
+  left: 20px;
+  background: #dc2626;
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 11px;
+  letter-spacing: 2px;
+  padding: 4px 14px;
+  border-radius: 4px;
+  transform: rotate(-10deg);
+  box-shadow: 0 4px 12px rgba(220, 38, 38, 0.35);
+  border: 1.5px dashed rgba(255, 255, 255, 0.6);
+  z-index: 20;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  text-transform: uppercase;
+}
+
+.sketch-center-cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+.sketch-hint-text {
+  font-size: 10px;
+  font-weight: 700;
+  color: #c79f4b;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.boxed-nav {
+  display: flex;
+  border-left: 1px solid rgba(255, 255, 255, 0.15);
+}
+.boxed-nav .nav-cell {
+  border-right: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 0 20px;
+  font-weight: 600;
+  font-size: 13px;
+  transition: all 0.2s;
+}
+.boxed-nav .nav-cell:hover, .boxed-nav .nav-cell[aria-current="page"] {
+  background: rgba(213, 189, 128, 0.15);
+  color: #f7d58d;
+}
+
+.social-circle-badge {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1.5px solid #d5bd80;
+  color: #f7d58d;
+  background: rgba(255, 255, 255, 0.05);
+  display: grid;
+  place-items: center;
+  font-size: 9px;
+  font-weight: 800;
+  transition: all 0.25s;
+  text-decoration: none;
+}
+.social-circle-badge:hover {
+  background: #c79f4b;
+  color: #0e2a20;
+  transform: scale(1.1);
+}
+
+.sketch-bottom-taqwa {
+  text-align: center;
+  margin: 28px auto 14px;
+  max-width: 400px;
+}
+.sketch-taqwa-title {
+  font-family: 'Hind Siliguri', serif;
+  font-size: 32px;
+  font-weight: 700;
+  color: #173f35;
+  letter-spacing: 1px;
+}
+.sketch-red-flourish {
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #dc2626, #c79f4b, #dc2626, transparent);
+  border-radius: 99px;
+  margin-top: 6px;
+}
+
+/* ==========================================================================
+   EXACT TAQWA VILLAGE DESIGN MOCKUP FIDELITY (AS PER USER UPLOADED DESIGN)
+   ========================================================================== */
+
+.mockup-body {
+  background-color: #f8f9f5 !important;
+  color: #173f35;
+}
+
+/* Glassmorphism Frosted Buttons */
+.frosted-glass-play {
+  background: rgba(0, 0, 0, 0.38);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.85);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.frosted-glass-play:hover {
+  background: rgba(0, 0, 0, 0.55);
+  transform: scale(1.08);
+  border-color: #ffffff;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.4);
+}
+
+.frosted-pill-btn {
+  background: rgba(255, 255, 255, 0.22);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  transition: all 0.25s ease;
+}
+
+.frosted-pill-btn:hover {
+  background: rgba(255, 255, 255, 0.38);
+  border-color: #ffffff;
+  transform: translateY(-2px);
+}
+
+/* Photo Carousel Track with smooth horizontal scroll */
+#photoCarouselTrack {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+#photoCarouselTrack::-webkit-scrollbar {
+  display: none;
+}

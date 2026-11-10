@@ -667,3 +667,105 @@ document.addEventListener('DOMContentLoaded', () => {
   switchHomeZone('zone1');
   switchCalcTier('tier1');
 });
+
+
+// =============================================================================
+// REAL ESTATE LEAD COLLECTION & DISCOVERY FUNCTIONS (WIRE-FRAME FIDELITY)
+// =============================================================================
+
+window.openLeadModal = function(source = 'সাধারণ ইনকোয়ারি') {
+  const modal = document.getElementById('leadModal');
+  const sourceEl = document.getElementById('leadSource');
+  const titleEl = document.getElementById('leadModalTitle');
+  if (sourceEl) sourceEl.value = source;
+  if (titleEl) titleEl.textContent = `তাকওয়া ভিলেজ রিয়েল এস্টেট — ${source}`;
+  if (modal) {
+    modal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+    window.lucide?.createIcons();
+  }
+};
+
+window.closeLeadModal = function() {
+  const modal = document.getElementById('leadModal');
+  if (modal) {
+    modal.classList.add('hidden');
+    document.body.style.overflow = '';
+  }
+};
+
+window.openPriceModal = function() {
+  const modal = document.getElementById('priceModal');
+  if (modal) {
+    modal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+    window.lucide?.createIcons();
+  }
+};
+
+window.closePriceModal = function() {
+  const modal = document.getElementById('priceModal');
+  if (modal) {
+    modal.classList.add('hidden');
+    document.body.style.overflow = '';
+  }
+};
+
+window.handleLeadSubmit = function(event, formName = 'ওয়েবসাইট ফরম') {
+  event.preventDefault();
+  const form = event.target;
+  const name = form.querySelector('[name="name"]')?.value || '';
+  const phone = form.querySelector('[name="phone"]')?.value || '';
+  const email = form.querySelector('[name="email"]')?.value || 'N/A';
+  const interest = form.querySelector('[name="interest"]')?.value || 'সাধারণ ইনকোয়ারি';
+  const notes = form.querySelector('[name="notes"]')?.value || '';
+
+  const leadData = {
+    name,
+    phone,
+    email,
+    interest,
+    notes,
+    formName,
+    date: new Date().toISOString()
+  };
+
+  try {
+    const existing = JSON.parse(localStorage.getItem('taqwa_realestate_leads') || '[]');
+    existing.push(leadData);
+    localStorage.setItem('taqwa_realestate_leads', JSON.stringify(existing));
+  } catch (e) {
+    console.error('Error saving lead:', e);
+  }
+
+  // Show inline success message if exists
+  const inlineSuccess = document.getElementById('inlineLeadSuccess');
+  if (inlineSuccess && formName.includes('ইনলাইন')) {
+    inlineSuccess.classList.remove('hidden');
+    form.reset();
+  } else {
+    window.closeLeadModal?.();
+    if (typeof showToast === 'function') {
+      showToast('ধন্যবাদ! আপনার তথ্য সংরক্ষিত হয়েছে। আমাদের রিয়েল এস্টেট টিম শীঘ্রই যোগাযোগ করবে।', 'success');
+    } else {
+      alert('ধন্যবাদ! আপনার তথ্য সংরক্ষিত হয়েছে। আমাদের রিয়েল এস্টেট টিম শীঘ্রই যোগাযোগ করবে।');
+    }
+  }
+
+  // Pre-fill WhatsApp message option
+  const waMsg = encodeURIComponent(`আসসালামু আলাইকুম, আমি তাকওয়া ভিলেজ রিয়েল এস্টেট প্রজেক্টের ব্রোশার ও মূল্য তালিকা জানতে আগ্রহী।\\n\\nনাম: ${name}\\nমোবাইল: ${phone}\\nআগ্রহের বিষয়: ${interest}`);
+  const waUrl = `https://wa.me/8801335145110?text=${waMsg}`;
+  
+  setTimeout(() => {
+    const confirmWa = confirm('আপনি কি হোয়াটসঅ্যাপে সরাসরি তাকওয়া ভিলেজ রিয়েল এস্টেট টিমের সাথে ব্রোশার পেতে যুক্ত হতে চান?');
+    if (confirmWa) {
+      window.open(waUrl, '_blank');
+    }
+  }, 600);
+};
+
+window.goToSlide = function(index) {
+  if (window.swiperInstance) {
+    window.swiperInstance.slideTo(index);
+  }
+};

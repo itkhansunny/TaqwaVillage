@@ -12,20 +12,20 @@ home = (ROOT / 'index.html').read_text(encoding='utf-8')
 
 # Extract shared chrome from homepage
 head = home[:home.index('<body')]
-chrome = home[home.index('<body'):home.index('  <main')]
+chrome = home[home.index('<body'):home.index('<main id="hero-section"')]
 chrome = chrome.replace('href="#hero-section"', 'href="#page-content"').replace(' aria-current="page"', '')
 
 # Extract clean footer and address section
 footer_start = home.index('<footer')
-footer_end = home.index('</footer>', footer_start) + 9
+footer_end = home.index('</footer>', footer_start) + len('</footer>')
 footer = home[footer_start:footer_end]
 
 addr_start = home.index('<section id="address-bar"')
-addr_end = home.index('</section>', addr_start) + 10
+addr_end = home.index('</section>', addr_start) + len('</section>')
 address = home[addr_start:addr_end].strip()
 
-# Modals
-modals = home[home.index('  <div id="bookingModal"'):home.index('  <!-- Custom Scripts -->')]
+# Modals (Lead, Price, Booking, Video, Lightbox)
+modals = home[home.index('<div id="leadModal"'):home.index('<!-- Custom Scripts')]
 
 def t(bn, en, tag='span', cls=''):
     return f'<{tag} class="{cls}" data-bn="{escape(bn, quote=True)}" data-en="{escape(en, quote=True)}">{escape(bn)}</{tag}>'
